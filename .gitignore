@@ -1,0 +1,64 @@
+# =========================
+# STM32 build output
+# =========================
+
+# CMake build directory
+build/
+cmake-build-*/
+
+# STM32CubeIDE build directory
+Debug/
+Release/
+
+# Compiled binaries
+*.elf
+*.hex
+*.bin
+*.map
+*.list
+*.lst
+
+# Object and dependency files
+*.o
+*.obj
+*.d
+*.a
+*.lib
+
+
+# =========================
+# CMake generated files
+# =========================
+
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+compile_commands.json
+Makefile
+
+
+# =========================
+# STM32CubeIDE / Eclipse
+# =========================
+
+.settings/
+.project
+.cproject
+
+
+# =========================
+# STM32CubeMX temporary files
+# =========================
+
+*.bak
+*.tmp
+*.swp
+
+
+# =========================
+# Operating system files
+# =========================
+
+.DS_Store
+Thumbs.db
+desktop.ini
