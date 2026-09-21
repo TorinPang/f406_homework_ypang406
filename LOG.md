@@ -13,3 +13,9 @@
 ![Training2.1](/img/Training2-1.png)
 
 实现了按下按键后就更改绿灯状态的功能
+
+### TIM内部中断控制小灯
+
+![Training2.2](/img/Training2-2.png)
+
+实现了TIM内部中断控制小灯闪烁的功能
