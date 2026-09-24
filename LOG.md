@@ -22,6 +22,14 @@
 
 ## 第三次作业
 
+### 呼吸灯
+
 ![Training3.1](/img/Training3-1.png)
 
 实现了呼吸灯的功能
+
+### 舵机
+
+![Training3.2](/img/Training3-2.png)
+
+实现了舵机旋转的功能
