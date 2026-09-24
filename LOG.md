@@ -19,3 +19,9 @@
 ![Training2.2](/img/Training2-2.png)
 
 实现了TIM内部中断控制小灯闪烁的功能
+
+## 第三次作业
+
+![Training3.1](/img/Training3-1.png)
+
+实现了呼吸灯的功能
