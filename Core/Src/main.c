@@ -90,15 +90,18 @@ int main(void)
   MX_CAN1_Init();
   /* USER CODE BEGIN 2 */
   CAN_TxHeaderTypeDef txHeader = {0};
-  txHeader.StdId = 0x713;// TODO 对吗
+  txHeader.StdId = 0x200;// TODO 对吗
   txHeader.ExtId = 0;// TODO对吗
   txHeader.IDE = CAN_ID_STD;// TODO 不对吧 
   txHeader.RTR = CAN_RTR_DATA;//TODO 要改吗
-  txHeader.DLC = 6;// TODO 要改吗
+  txHeader.DLC = 8;// TODO 要改吗
   txHeader.TransmitGlobalTime = DISABLE;
 
   /* 0x201 M2006 current, big-endian int16, range typically [-10000, 10000] */
+  int16_t current = 2500; 
   uint8_t txData[8] = {};// TODO 构造控制电机的CAN帧。建议电流值：1000
+  txData[0] = (current >> 8) & 0xFF; // High byte
+  txData[1] = current & 0xFF;        // Low byte
   uint32_t txMailbox;
   /* USER CODE END 2 */
 
@@ -107,7 +110,7 @@ int main(void)
   while (1)
   {
     (void)HAL_CAN_AddTxMessage(&hcan1, &txHeader, txData, &txMailbox);
-    HAL_Delay(500); // TODO 电机的控制频率建议100hz
+    HAL_Delay(10); // TODO 电机的控制频率建议100hz
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

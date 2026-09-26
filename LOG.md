@@ -64,6 +64,12 @@
 
 ### can线回环
 
-![Training4.5](/img/Training4-5.png)
+![Training5.1](/img/Training5-1.png)
 
 实现了can线回环电灯
+
+### 旋转电机
+
+![Training5.2](/img/Training5-2.png)
+
+实现了旋转电机的功能

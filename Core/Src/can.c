@@ -39,7 +39,7 @@ void MX_CAN1_Init(void)
   /* USER CODE END CAN1_Init 1 */
   hcan1.Instance = CAN1;
   hcan1.Init.Prescaler = 3;
-  hcan1.Init.Mode = CAN_MODE_SILENT_LOOPBACK;
+  hcan1.Init.Mode = CAN_MODE_NORMAL;
   hcan1.Init.SyncJumpWidth = CAN_SJW_1TQ;
   hcan1.Init.TimeSeg1 = CAN_BS1_10TQ;
   hcan1.Init.TimeSeg2 = CAN_BS2_3TQ;
@@ -141,14 +141,30 @@ void HAL_CAN_MspDeInit(CAN_HandleTypeDef* canHandle)
 
 /* USER CODE BEGIN 1 */
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan){
-  HAL_GPIO_TogglePin(GPIOH, GPIO_PIN_10); // Toggle the LED on PA5
   CAN_RxHeaderTypeDef rx_header;
   uint8_t rx_data[8];
-  if (HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &rx_header, rx_data) != HAL_OK)
-  {
-    Error_Handler();
+
+  if (HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &rx_header, rx_data) != HAL_OK) {
+      Error_Handler();
   }
-  // Process the received message (rx_header and rx_data)
+
+  // 判断是不是电调 ID1 的反馈（标识符 0x201）
+  if (rx_header.StdId == 0x201)
+  {
+      // 解析角度
+      uint16_t angle = (rx_data[0] << 8) | rx_data[1];   // 0~8191 对应 0~360°
+
+      // 解析转速（有符号）
+      int16_t speed = (rx_data[2] << 8) | rx_data[3];    // rpm
+
+      // 解析实际电流（有符号）
+      int16_t current = (rx_data[4] << 8) | rx_data[5];
+
+      // 错误码
+      uint8_t error = rx_data[7];
+
+      // 可以在这里做闭环控制、打印等
+  }
 }
 /* USER CODE END 1 */
 
