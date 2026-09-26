@@ -38,4 +38,12 @@
 
 ### 串口数据发送
 
+![Training4.1](/img/Training4-1.png)
+
 向串口发送“hello world”
+
+### 串口数据接收
+
+![Training4.2](/img/Training4-2.png)
+
+接受串口数据并改变小灯状态
