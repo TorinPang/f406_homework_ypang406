@@ -53,3 +53,9 @@
 ![Training4.3](/img/Training4-3.png)
 
 接收串口数据（中断）并改变小灯状态
+
+### 串口数据接收-DMA
+
+![Training4.4](/img/Training4-4.png)
+
+通过DMA接收串口数据并改变小灯状态
