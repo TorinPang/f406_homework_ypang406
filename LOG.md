@@ -59,3 +59,11 @@
 ![Training4.4](/img/Training4-4.png)
 
 通过DMA接收串口数据并改变小灯状态
+
+## 第五次培训
+
+### can线回环
+
+![Training4.5](/img/Training4-5.png)
+
+实现了can线回环电灯
