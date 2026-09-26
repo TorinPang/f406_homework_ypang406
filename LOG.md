@@ -33,3 +33,9 @@
 ![Training3.2](/img/Training3-2.png)
 
 实现了舵机旋转的功能
+
+## 第四次培训
+
+### 串口数据发送
+
+向串口发送“hello world”
