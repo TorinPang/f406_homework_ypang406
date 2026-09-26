@@ -47,3 +47,9 @@
 ![Training4.2](/img/Training4-2.png)
 
 接受串口数据并改变小灯状态
+
+### 串口数据接收-中断
+
+![Training4.3](/img/Training4-3.png)
+
+接收串口数据（中断）并改变小灯状态

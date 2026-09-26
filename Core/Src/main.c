@@ -43,7 +43,7 @@
 UART_HandleTypeDef huart6;
 
 /* USER CODE BEGIN PV */
-
+uint8_t messages[2];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -56,7 +56,17 @@ static void MX_USART6_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
+  HAL_UART_Transmit_IT(&huart6, messages, 2);
+  GPIO_PinState state = messages[1] == '1' ? GPIO_PIN_SET : GPIO_PIN_RESET;
+  if(messages[0] == 'R')
+    HAL_GPIO_WritePin(GPIOH, LED_RED_Pin, state);
+  else if(messages[0] == 'G')
+    HAL_GPIO_WritePin(GPIOH, LED_GREEN_Pin, state);
+  else if(messages[0] == 'B')
+    HAL_GPIO_WritePin(GPIOH, LED_BLUE_Pin, state);
+  HAL_UART_Receive_IT(&huart6, messages, 2);
+}
 /* USER CODE END 0 */
 
 /**
@@ -90,22 +100,13 @@ int main(void)
   MX_GPIO_Init();
   MX_USART6_UART_Init();
   /* USER CODE BEGIN 2 */
-  uint8_t messages[2];
+  HAL_UART_Receive_IT(&huart6, messages, 2);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    HAL_UART_Receive(&huart6, messages, 2, HAL_MAX_DELAY);
-    HAL_UART_Transmit(&huart6, messages, 2, HAL_MAX_DELAY);
-    GPIO_PinState state = messages[1] == '1' ? GPIO_PIN_SET : GPIO_PIN_RESET;
-    if(messages[0] == 'R')
-      HAL_GPIO_WritePin(GPIOH, LED_RED_Pin, state);
-    else if(messages[0] == 'G')
-      HAL_GPIO_WritePin(GPIOH, LED_GREEN_Pin, state);
-    else if(messages[0] == 'B')
-      HAL_GPIO_WritePin(GPIOH, LED_BLUE_Pin, state);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
